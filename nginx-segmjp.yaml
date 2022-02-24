@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-nginx-segmjp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-segmjp
+  namespace: my-nginx-segmjp
+  labels:
+    name: nginx-segmjp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-segmjp
+  template:
+    metadata:
+      namespace: my-nginx-segmjp
+      labels:
+        name: nginx-segmjp
+    spec:
+      containers:
+      - name: nginx-segmjp
+        image: nginx
+        ports:
+        - containerPort: 80
+
